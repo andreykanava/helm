@@ -1,22 +1,22 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: {{ .Values.frontend.apiVersion }}
+kind: {{ .Values.frontend.kind }}
 metadata:
-  name: frontend
+  name: {{ .Values.frontend.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.frontend.replicas }}
   selector:
     matchLabels:
-      app: frontend
+      app: {{ .Values.frontend.name }}
   template:
     metadata:
       labels:
-        app: frontend
+        app: {{ .Values.frontend.name }}
     spec:
       containers:
-        - name: frontend
+        - name: {{ .Values.frontend.name }}
           image: {{ .Values.frontend.image }}
           ports:
-            - containerPort: 80
+            - containerPort: {{ .Values.frontend.containerPort }}
           volumeMounts:
             - mountPath: /usr/share/nginx/html
               name: frontend-volume
