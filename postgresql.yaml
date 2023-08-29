@@ -1,32 +1,32 @@
 # templates/postgresql.yaml
-apiVersion: v1
-kind: Service
+apiVersion: {{ .Values.postgresql.apiVersion }}
+kind: {{ .Values.postgresql.kind }}
 metadata:
-  name: postgres
+  name: {{ .Values.postgresql.name }}
 spec:
   selector:
-    app: postgres
+    app: {{ .Values.postgresql.name }}
   ports:
     - protocol: TCP
-      port: 5432
+      port: {{ .Values.postgresql.port }}
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
+  name: {{ .Values.postgresql.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.postgresql.replicas }}
   selector:
     matchLabels:
-      app: postgres
+      app:  {{ .Values.postgresql.name }}
   template:
     metadata:
       labels:
-        app: postgres
+        app:  {{ .Values.postgresql.name }}
     spec:
       containers:
-        - name: postgres
+        - name:  {{ .Values.postgresql.name }}
           image: {{ .Values.postgresql.image }}
           env:
             - name: POSTGRES_USER
