@@ -1,0 +1,10 @@
+backend:
+  image: kravchuchka/backend
+  # Додайте інші налаштування для бекенду, якщо потрібно
+
+frontend:
+  image: kravchuchka/frontend
+  # Додайте інші налаштування для фронтенду, якщо потрібно
+
+postgresql:
+  # Додайте налаштування для PostgreSQL, якщо потрібно
