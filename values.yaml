@@ -1,10 +1,26 @@
 backend:
   image: kravchuchka/backend
-  # Додайте інші налаштування для бекенду, якщо потрібно
+  apiVersion: apps/v1
+  kind: Deployment
+  name: backend
+  replicas: 1
+  containerPort: 3000
 
 frontend:
   image: kravchuchka/frontend
-  # Додайте інші налаштування для фронтенду, якщо потрібно
+  apiVersion: apps/v1
+  kind: Deployment
+  name: frontend
+  replicas: 1
+  containerPort: 80
 
 postgresql:
-  # Додайте налаштування для PostgreSQL, якщо потрібно
+  image: postgres
+  postgresUser: postgres
+  postgresPassword: password
+  postgresDatabase: mydb
+  apiVersion: v1
+  kind: Service
+  name: postgres
+  port: 5432
+  replicas: 1
