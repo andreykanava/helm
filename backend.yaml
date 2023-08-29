@@ -1,9 +1,9 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: {{ .Values.backend.apiVersion }}
+kind: {{ .Values.backend.kind }}
 metadata:
-  name: backend
+  name: {{ .Values.backend.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.backend.replicas }}
   selector:
     matchLabels:
       app: backend
@@ -13,10 +13,10 @@ spec:
         app: backend
     spec:
       containers:
-        - name: backend
+        - name: {{ .Values.backend.name }}
           image: {{ .Values.backend.image }}
           ports:
-            - containerPort: 3000
+            - containerPort: {{ .Values.backend.containerPort }}
           volumeMounts:
             - mountPath: /app
               name: backend-volume
